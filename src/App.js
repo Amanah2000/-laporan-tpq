@@ -46,10 +46,10 @@ function App() {
   }
 
   // 4. Fungsi HAPUS DATA - YANG KEMARIN KURANG
-  const hapusData = (id) => {
+ 
     const dataBaru = dataKeuangan.filter(item => item.id !== id);
     setDataKeuangan(dataBaru);
-  }
+  
 
   // 5. Hitung total
   const totalPemasukan = dataKeuangan.filter(i => i.jenis === 'Pemasukan').reduce((acc, i) => acc + i.jumlah, 0);
