@@ -164,21 +164,21 @@ function App() {
       <table
         border="1"
         style={{
-          width: '100%',
-          borderCollapse: 'collapse',
+          width: '60%',
+        
           textAlign: 'center',
-          display: 'block',        // INI BARU
+          
           overflowX: 'auto',       // INI BARU
           whiteSpace: 'nowrap',    // INI BARU
         }}
       >
         <thead>
           <tr style={{ backgroundColor: '#2596be' }}>
-            <th style={{ padding: '8px', minWidth: '100px' }}>Tanggal</th>
-            <th style={{ padding: '8px', minWidth: '150px' }}>Jenis</th>
-            <th style={{ padding: '8px', minWidth: '205px' }}>Keterangan</th>
-            <th style={{ padding: '8px', minWidth: '105px' }}>Jumlah</th>
-            <th style={{ padding: '8px', minWidth: '110px' }}>Aksi</th>
+            <th style={{ padding: '8px', minWidth: '150px' }}>Tanggal</th>
+            <th style={{ padding: '8px', minWidth: '130px' }}>Jenis</th>
+            <th style={{ padding: '8px', minWidth: '130px' }}>Keterangan</th>
+            <th style={{ padding: '8px', minWidth: '130px' }}>Jumlah</th>
+            <th style={{ padding: '8px', minWidth: '130px' }}>Aksi</th>
           </tr>
         </thead>
           
