@@ -206,5 +206,36 @@ function App() {
     </div>
   )
 }
+/* Tambahkan ini di paling bawah file App.js */
+const styles = `
+@media (max-width: 768px) {
+  body { padding: 10px; }
+  h1 { font-size: 24px; text-align: center; }
+  
+  /* Bikin 3 kotak jadi turun ke bawah */
+  .dashboard { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 10px; 
+  }
+  
+  /* Form input jadi 1 kolom */
+  .form-input { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 8px; 
+  }
+  .form-input input, .form-input select, .form-input button {
+    width: 100%;
+    padding: 8px;
+  }
 
+  /* Tabel bisa di scroll ke samping */
+  table { 
+    display: block; 
+    overflow-x: auto; 
+    white-space: nowrap; 
+  }
+}
+`
 export default App
