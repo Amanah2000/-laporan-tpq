@@ -27,8 +27,6 @@ function App() {
 
   // 3. Fungsi Tambah Data + Tanggal Otomatis
   const tambahData = () => {
-    if (keterangan === '' || jumlah === '') return alert('Isi semua dulu Pak');
-
     const dataBaru = {
       id: Date.now(),
       tanggal: new Date().toLocaleString('id-ID', {
@@ -45,6 +43,12 @@ function App() {
     setJumlah('');
   }
 
+  // 4. Fungsi HAPUS DATA - YANG KEMARIN KURANG
+  // 4. Fungsi HAPUS DATA - VERSI AMAN VERCEL
+  const hapusData = (id) => {
+  console.log("ID yg dihapus:", id); // buat ngecek
+  setDataKeuangan(dataKeuangan.filter(item => String(item.id) !== String(id)));
+};
 
 
   // 5. Hitung total
@@ -115,12 +119,12 @@ function App() {
     a.click();
   }
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial'}}>
+    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
       <h1>Dashboard Keuangan TPQ</h1>
 
       {/* BOX TOTAL DI ATAS */}
       <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
-        <div style={{ border: '2px solid green', padding: '10px', borderRadius: '8px',width: '220px',}}>
+        <div style={{ border: '2px solid green', padding: '10px', borderRadius: '8px', width: '220px', }}>
           <p>Total Pemasukan</p>
           <h2 style={{ color: 'green', margin: 0 }}>Rp {totalPemasukan.toLocaleString('id-ID')}</h2>
         </div>
@@ -146,7 +150,7 @@ function App() {
           onChange={(e) => setTanggalManual(e.target.value)}
         />
         <input placeholder="Keterangan" value={keterangan} onChange={(e) => setKeterangan(e.target.value)} style={{ margin: '0 5px' }} />
-        <input placeholder="Jumlah" type="number" value={jumlah} onChange={(e) => setJumlah(e.target.value)} style={{ margin: '0 5px'}} />
+        <input placeholder="Jumlah" type="number" value={jumlah} onChange={(e) => setJumlah(e.target.value)} style={{ margin: '0 5px' }} />
 
         <button onClick={tambahData}>Tambah</button>
         <button onClick={downloadExcel} style={{ backgroundColor: 'green', color: 'white', marginLeft: '10px' }}>
@@ -154,7 +158,8 @@ function App() {
         </button>
       </div>
 
-      {/* TABEL DATA + TOMBOL HAPUS */}
+
+
       {/* TABEL DATA + TOMBOL HAPUS */}
       <table
         border="1"
@@ -172,19 +177,36 @@ function App() {
             <th style={{ padding: '8px', minWidth: '100px' }}>Tanggal</th>
             <th style={{ padding: '8px', minWidth: '150px' }}>Jenis</th>
             <th style={{ padding: '8px', minWidth: '205px' }}>Keterangan</th>
-            <th style={{ padding: '8px', minWidth: '100px' }}>Jumlah</th>
-            <th style={{ padding: '8px', minWidth: '105px' }}>Aksi</th>
+            <th style={{ padding: '8px', minWidth: '105px' }}>Jumlah</th>
+            <th style={{ padding: '8px', minWidth: '110px' }}>Aksi</th>
           </tr>
         </thead>
-       <tbody>
+            <thead>
+          <tr style={{ backgroundColor: '#f2f2f2' }}>
+            <th style={{ padding: '8px' }}>Tanggal</th>
+            <th style={{ padding: '8px' }}>Jenis</th>
+            <th style={{ padding: '8px' }}>Keterangan</th>
+            <th style={{ padding: '8px' }}>Jumlah</th>
+            <th style={{ padding: '8px' }}>Aksi</th>
+          </tr>
+        </thead>
+   <tbody>
   {dataKeuangan.map((item) => (
-    <tr>
-      <td style={{ padding: '8px', textAlign: 'center' }}>{item.tanggal}</td>
-      <td style={{ padding: '8px', textAlign: 'center', color: item.jenis === 'Pemasukan' ? 'green' : 'red' }}>{item.jenis}</td>
-      <td style={{ padding: '8px', textAlign: 'center' }}>{item.keterangan}</td>
-      <td style={{ padding: '8px', textAlign: 'right' }}>{item.jumlah}</td>  {/* INI DIRUBAH JADI RIGHT */}
-      <td style={{ padding: '8px', textAlign: 'center' }}>
-        <button style={{ backgroundColor: 'red', color: 'white' }}>Hapus</button>
+    <tr key={item.id} style={{ backgroundColor: 'white' }}> {/* <- background putih */}
+      <td>{item.tanggal}</td>
+      
+      {/* INI BAGIAN YANG DIUBAH WARNA TULISANNYA */}
+      <td style={{ 
+          color: item.jenis === 'Pemasukan' ? 'green' : 'red',
+          fontWeight: 'bold' 
+      }}>
+        {item.jenis}
+      </td>
+
+      <td>{item.keterangan}</td>
+      <td>Rp {item.jumlah.toLocaleString('id-ID')}</td>
+      <td>
+        <button onClick={() => hapusData(item.id)} style={{background:'red', color:'white'}}>Hapus</button>
       </td>
     </tr>
   ))}
