@@ -122,9 +122,7 @@ function App() {
 }
   
    return (
-  <div>
-    <style>{styles}</style>  {/* TAMBAHKAN INI */}
-    
+   
     <h1>Laporan TPQ</h1>
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
       <h1>Dashboard Keuangan TPQ</h1>
@@ -212,27 +210,5 @@ function App() {
   )
 }
 /* Tambahkan ini di paling bawah file App.js */
-const styles = `
-@media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-  h1 {
-    font-size: 24px;
-    text-align: center;
-  }
 
-  /* 3 kotak jadi 1 kolom ke bawah */
-  .dashboard {
-    flex-direction: column !important;
-  }
-
-  /* Tabel bisa di scroll */
-  table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-}
-`;
 export default App
