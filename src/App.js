@@ -46,9 +46,9 @@ function App() {
   // 4. Fungsi HAPUS DATA - YANG KEMARIN KURANG
   // 4. Fungsi HAPUS DATA - VERSI AMAN VERCEL
   const hapusData = (id) => {
-  console.log("ID yg dihapus:", id); // buat ngecek
-  setDataKeuangan(dataKeuangan.filter(item => String(item.id) !== String(id)));
-};
+    console.log("ID yg dihapus:", id); // buat ngecek
+    setDataKeuangan(dataKeuangan.filter(item => String(item.id) !== String(id)));
+  };
 
 
   // 5. Hitung total
@@ -164,41 +164,46 @@ function App() {
       <table
         border="1"
         style={{
-          width: '60%',
-        
+          width: '62%',
+
           textAlign: 'center',
-          
+
           overflowX: 'auto',       // INI BARU
           whiteSpace: 'nowrap',    // INI BARU
         }}
       >
         <thead>
-          <tr style={{ backgroundColor: '#2596be' }}>
-            <th style={{ padding: '8px', minWidth: '150px' }}>Tanggal</th>
-            <th style={{ padding: '8px', minWidth: '130px' }}>Jenis</th>
-            <th style={{ padding: '8px', minWidth: '130px' }}>Keterangan</th>
-            <th style={{ padding: '8px', minWidth: '130px' }}>Jumlah</th>
-            <th style={{ padding: '8px', minWidth: '130px' }}>Aksi</th>
-          </tr>
-        </thead>
           
-   <tbody>
-  {dataKeuangan.map((item) => (
-    <tr key={item.id} style={{ backgroundColor: 'white' }}> {/* <- background putih */}
-      <td>{item.tanggal}</td>
+  <tr>
+    <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '0px' }}>Tanggal</th>
+    <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Jenis</th>
+    <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Keterangan</th>
+    <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Jumlah</th>
+    <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Aksi</th>
+  </tr>
+</thead>
+        
+<tbody>
+  {dataKeuangan.map((item, index) => (
+    <tr key={item.id}>
+      <td style={{ padding: '8px', border: '1px solid #ddd' }}>{item.tanggal}</td>
       
-      {/* INI BAGIAN YANG DIUBAH WARNA TULISANNYA */}
       <td style={{ 
-          color: item.jenis === 'Pemasukan' ? 'green' : 'red',
-          fontWeight: 'bold' 
+        padding: '8px', 
+        border: '1px solid #ddd',
+        color: item.jenis === 'Pemasukan' ? 'green' : 'red',
+        fontWeight: 'bold',
+        textAlign: 'center'
       }}>
         {item.jenis}
       </td>
 
-      <td>{item.keterangan}</td>
-      <td>Rp {item.jumlah.toLocaleString('id-ID')}</td>
-      <td>
-        <button onClick={() => hapusData(item.id)} style={{background:'red', color:'white'}}>Hapus</button>
+      <td style={{ padding: '8px', border: '1px solid #ddd' }}>{item.keterangan}</td>
+      
+      <td style={{ padding: '8px', border: '1px solid #ddd', textAlign: 'right' }}>Rp {item.jumlah.toLocaleString()}</td>
+      
+      <td style={{ padding: '8px', border: '1px solid #ddd', textAlign: 'center' }}>
+        <button onClick={() => hapusData(item.id)} style={{ backgroundColor: 'red', color: 'white', border: 'none', padding: '4px 8px' }}>Hapus</button>
       </td>
     </tr>
   ))}
