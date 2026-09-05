@@ -181,15 +181,7 @@ function App() {
             <th style={{ padding: '8px', minWidth: '110px' }}>Aksi</th>
           </tr>
         </thead>
-            <thead>
-          <tr style={{ backgroundColor: '#f2f2f2' }}>
-            <th style={{ padding: '8px' }}>Tanggal</th>
-            <th style={{ padding: '8px' }}>Jenis</th>
-            <th style={{ padding: '8px' }}>Keterangan</th>
-            <th style={{ padding: '8px' }}>Jumlah</th>
-            <th style={{ padding: '8px' }}>Aksi</th>
-          </tr>
-        </thead>
+        
    <tbody>
   {dataKeuangan.map((item) => (
     <tr key={item.id} style={{ backgroundColor: 'white' }}> {/* <- background putih */}
