@@ -181,7 +181,7 @@ function App() {
             <th style={{ padding: '8px', minWidth: '110px' }}>Aksi</th>
           </tr>
         </thead>
-        
+          
    <tbody>
   {dataKeuangan.map((item) => (
     <tr key={item.id} style={{ backgroundColor: 'white' }}> {/* <- background putih */}
