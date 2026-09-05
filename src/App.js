@@ -120,7 +120,12 @@ function App() {
     a.download = 'Laporan_Keuangan_TPQ.xlsx'; 
     a.click();
 }
-  return (
+  
+   return (
+  <div>
+    <style>{styles}</style>  {/* TAMBAHKAN INI */}
+    
+    <h1>Laporan TPQ</h1>
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
       <h1>Dashboard Keuangan TPQ</h1>
 
@@ -236,6 +241,6 @@ const styles = `
     overflow-x: auto; 
     white-space: nowrap; 
   }
-}
-`
+`}
+
 export default App
