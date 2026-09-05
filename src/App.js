@@ -120,10 +120,7 @@ function App() {
     a.download = 'Laporan_Keuangan_TPQ.xlsx'; 
     a.click();
 }
-  
-   return (
-   
-    <h1>Laporan TPQ</h1>
+  return (
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
       <h1>Dashboard Keuangan TPQ</h1>
 
