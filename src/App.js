@@ -15,12 +15,10 @@ function App() {
       })
     }));
   });
-
   const [jenis, setJenis] = useState('Pemasukan');
   const [keterangan, setKeterangan] = useState('');
   const [jumlah, setJumlah] = useState('');
   const [tanggalManual, setTanggalManual] = useState(new Date().toISOString().split('T')[0]);
-
 
   // 2. Simpan otomatis ke localStorage
   useEffect(() => {
@@ -30,7 +28,7 @@ function App() {
   // 3. Fungsi Tambah Data + Tanggal Otomatis
   const tambahData = () => {
     if (keterangan === '' || jumlah === '') return alert('Isi semua dulu Pak');
-  
+
     const dataBaru = {
       id: Date.now(),
       tanggal: new Date().toLocaleString('id-ID', {
@@ -69,46 +67,46 @@ function App() {
     const worksheet = workbook.addWorksheet('Keuangan TPQ');
     // 1. Tambah Header
     const headerRow = worksheet.addRow(['Tanggal', 'Jam', 'Jenis', 'Keterangan', 'Jumlah']);
-    
+
     // Style Header: Biru + Putih Tebal
     headerRow.eachCell((cell) => {
-        cell.fill = { type: 'pattern', pattern:'solid', fgColor:{argb:'FF2563EB'} };
-        cell.font = { bold: true, color: { argb:'FFFFFFFF' } };
-        cell.alignment = { horizontal: 'center', vertical: 'middle' };
-        cell.border = { top: {style:'thin'}, left: {style:'thin'}, bottom: {style:'thin'}, right: {style:'thin'} };
+      cell.fill = { type: 'pattern', pattern: 'solid', fgColor: { argb: 'FF2563EB' } };
+      cell.font = { bold: true, color: { argb: 'FFFFFFFF' } };
+      cell.alignment = { horizontal: 'center', vertical: 'middle' };
+      cell.border = { top: { style: 'thin' }, left: { style: 'thin' }, bottom: { style: 'thin' }, right: { style: 'thin' } };
     });
 
     // 2. Tambah Data
     dataKeuangan.forEach(item => {
-        const [tanggal, jam] = item.tanggal.split(', ');
-        const row = worksheet.addRow([tanggal, jam, item.jenis, item.keterangan, item.jumlah]);
-        row.getCell(5).numFmt = '#,##0'; // Format angka
-        row.getCell(5).alignment = { horizontal: 'right' };
+      const [tanggal, jam] = item.tanggal.split(', ');
+      const row = worksheet.addRow([tanggal, jam, item.jenis, item.keterangan, item.jumlah]);
+      row.getCell(5).numFmt = '#,##0'; // Format angka
+      row.getCell(5).alignment = { horizontal: 'right' };
     });
-// 3. Tambah Total - VERSI RAPI
+    // 3. Tambah Total - VERSI RAPI
     // 3. Tambah Total - POSISI PASTI DI KOLOM E
     worksheet.addRow([]);
     const rowPemasukan = worksheet.addRow(['TOTAL PEMASUKAN', '', '', '', totalPemasukan]);
-    const rowPengeluaran = worksheet.addRow(['TOTAL PENGELUARAN', '','','', totalPengeluaran]);
-    const rowSaldo = worksheet.addRow(['SALDO AKHIR', '','','', saldoAkhir]);
-    
+    const rowPengeluaran = worksheet.addRow(['TOTAL PENGELUARAN', '', '', '', totalPengeluaran]);
+    const rowSaldo = worksheet.addRow(['SALDO AKHIR', '', '', '', saldoAkhir]);
+
     // Style Baris Total: Tebal + Rata Kanan
     [rowPemasukan, rowPengeluaran, rowSaldo].forEach(row => {
-        row.font = { bold: true };
-        row.getCell(5).alignment = { horizontal: 'right' }; // Kolom E
+      row.font = { bold: true };
+      row.getCell(5).alignment = { horizontal: 'right' }; // Kolom E
     });
     // Style Baris Total: Tebal
-  // 3. Tambah Total - DIPAKSA RATA KAN KOLOM E
-   
-    
+    // 3. Tambah Total - DIPAKSA RATA KAN KOLOM E
+
+
     // Style Baris Total: Tebal
-   
+
 
     // Rata kanan semua di Kolom 5 = Kolom E
-  
-  
+
+
     worksheet.columns = [
-        { width: 12 }, { width: 8 }, { width: 12 }, { width: 25 }, { width: 15 }
+      { width: 12 }, { width: 8 }, { width: 12 }, { width: 25 }, { width: 15 }
     ];
 
     // 5. Download
@@ -116,25 +114,25 @@ function App() {
     const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; 
-    a.download = 'Laporan_Keuangan_TPQ.xlsx'; 
+    a.href = url;
+    a.download = 'Laporan_Keuangan_TPQ.xlsx';
     a.click();
-}
+  }
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial' }}>
+    <div style={{ padding: '20px', fontFamily: 'Arial'}}>
       <h1>Dashboard Keuangan TPQ</h1>
 
       {/* BOX TOTAL DI ATAS */}
       <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
-        <div style={{ border: '2px solid green', padding: '10px', borderRadius: '8px', width: '200px' }}>
+        <div style={{ border: '2px solid green', padding: '10px', borderRadius: '8px',width: '220px',}}>
           <p>Total Pemasukan</p>
           <h2 style={{ color: 'green', margin: 0 }}>Rp {totalPemasukan.toLocaleString('id-ID')}</h2>
         </div>
-        <div style={{ border: '2px solid red', padding: '10px', borderRadius: '8px', width: '200px' }}>
+        <div style={{ border: '2px solid red', padding: '10px', borderRadius: '8px', width: '220px' }}>
           <p>Total Pengeluaran</p>
           <h2 style={{ color: 'red', margin: 0 }}>Rp {totalPengeluaran.toLocaleString('id-ID')}</h2>
         </div>
-        <div style={{ border: '2px solid blue', padding: '10px', borderRadius: '8px', width: '200px' }}>
+        <div style={{ border: '2px solid blue', padding: '10px', borderRadius: '8px', width: '220px' }}>
           <p>Saldo Akhir</p>
           <h2 style={{ color: 'blue', margin: 0 }}>Rp {saldo.toLocaleString('id-ID')}</h2>
         </div>
@@ -152,7 +150,7 @@ function App() {
           onChange={(e) => setTanggalManual(e.target.value)}
         />
         <input placeholder="Keterangan" value={keterangan} onChange={(e) => setKeterangan(e.target.value)} style={{ margin: '0 5px' }} />
-        <input placeholder="Jumlah" type="number" value={jumlah} onChange={(e) => setJumlah(e.target.value)} style={{ margin: '0 5px' }} />
+        <input placeholder="Jumlah" type="number" value={jumlah} onChange={(e) => setJumlah(e.target.value)} style={{ margin: '0 5px'}} />
 
         <button onClick={tambahData}>Tambah</button>
         <button onClick={downloadExcel} style={{ backgroundColor: 'green', color: 'white', marginLeft: '10px' }}>
@@ -167,35 +165,30 @@ function App() {
         style={{
           width: '100%',
           borderCollapse: 'collapse',
-          textAlign: 'center' // INI KUNCINYA BIAR CENTER SEMUA
+          textAlign: 'center',
+          display: 'block',        // INI BARU
+          overflowX: 'auto',       // INI BARU
+          whiteSpace: 'nowrap',    // INI BARU
         }}
       >
         <thead>
-          <tr style={{ backgroundColor: '#f2f2f2' }}>
-            <th style={{ padding: '8px' }}>Tanggal</th>
-            <th style={{ padding: '8px' }}>Jenis</th>
-            <th style={{ padding: '8px' }}>Keterangan</th>
-            <th style={{ padding: '8px' }}>Jumlah</th>
-            <th style={{ padding: '8px' }}>Aksi</th>
+          <tr style={{ backgroundColor: '#2596be' }}>
+            <th style={{ padding: '8px', minWidth: '100px' }}>Tanggal</th>
+            <th style={{ padding: '8px', minWidth: '150px' }}>Jenis</th>
+            <th style={{ padding: '8px', minWidth: '205px' }}>Keterangan</th>
+            <th style={{ padding: '8px', minWidth: '100px' }}>Jumlah</th>
+            <th style={{ padding: '8px', minWidth: '105px' }}>Aksi</th>
           </tr>
         </thead>
-   <tbody>
+       <tbody>
   {dataKeuangan.map((item) => (
-    <tr key={item.id} style={{ backgroundColor: 'white' }}> {/* <- background putih */}
-      <td>{item.tanggal}</td>
-      
-      {/* INI BAGIAN YANG DIUBAH WARNA TULISANNYA */}
-      <td style={{ 
-          color: item.jenis === 'Pemasukan' ? 'green' : 'red',
-          fontWeight: 'bold' 
-      }}>
-        {item.jenis}
-      </td>
-
-      <td>{item.keterangan}</td>
-      <td>Rp {item.jumlah.toLocaleString('id-ID')}</td>
-      <td>
-        <button onClick={() => hapusData(item.id)} style={{background:'red', color:'white'}}>Hapus</button>
+    <tr>
+      <td style={{ padding: '8px', textAlign: 'center' }}>{item.tanggal}</td>
+      <td style={{ padding: '8px', textAlign: 'center', color: item.jenis === 'Pemasukan' ? 'green' : 'red' }}>{item.jenis}</td>
+      <td style={{ padding: '8px', textAlign: 'center' }}>{item.keterangan}</td>
+      <td style={{ padding: '8px', textAlign: 'right' }}>{item.jumlah}</td>  {/* INI DIRUBAH JADI RIGHT */}
+      <td style={{ padding: '8px', textAlign: 'center' }}>
+        <button style={{ backgroundColor: 'red', color: 'white' }}>Hapus</button>
       </td>
     </tr>
   ))}
