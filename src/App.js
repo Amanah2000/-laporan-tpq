@@ -241,6 +241,7 @@ const styles = `
     overflow-x: auto; 
     white-space: nowrap; 
   }
-`}
+}
+`;
 
 export default App
