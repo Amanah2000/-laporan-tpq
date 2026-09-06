@@ -161,7 +161,7 @@ function App() {
       <table
         border="1"
         style={{
-          width: '40%',
+          width: '45%',
           textAlign: 'center',
         }}
           >
