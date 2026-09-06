@@ -141,8 +141,8 @@ function App() {
           value={tanggalManual}
           onChange={(e) => setTanggalManual(e.target.value)}
         />
-        <input placeholder="Keterangan" value={keterangan} onChange={(e) => setKeterangan(e.target.value)} style={{ margin: '5px' }} />
-        <input placeholder="Jumlah" type="number" value={jumlah} onChange={(e) => setJumlah(e.target.value)} style={{ margin: '5px' }} />
+        <input placeholder="Keterangan" value={keterangan} onChange={(e) => setKeterangan(e.target.value)} style={{ margin: '2px' }} />
+        <input placeholder="Jumlah" type="number" value={jumlah} onChange={(e) => setJumlah(e.target.value)} style={{ margin: '2px' }} />
         <button onClick={tambahData}>Tambah</button>
         <button onClick={downloadExcel} style={{ backgroundColor: 'green', color: 'white', marginInlineStart: `5px`, }}>
           Download Excel
