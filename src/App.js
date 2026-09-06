@@ -119,7 +119,7 @@ function App() {
           <p>Total Pemasukan</p>
           <h2 style={{ color: 'green', margin: 0 }}>Rp {totalPemasukan.toLocaleString('id-ID')}</h2>
         </div>
-        <div style={{ border: '2px solid red', padding: '10px', borderRadius: '8px', width: '225x' }}>
+        <div style={{ border: '2px solid red', padding: '10px', borderRadius: '8px', width: '225px' }}>
           <p>Total Pengeluaran</p>
           <h2 style={{ color: 'red', margin: 0 }}>Rp {totalPengeluaran.toLocaleString('id-ID')}</h2>
         </div>
