@@ -97,14 +97,8 @@ function App() {
     });
     // Style Baris Total: Tebal
     // 3. Tambah Total - DIPAKSA RATA KAN KOLOM E
-
-
     // Style Baris Total: Tebal
-
-
     // Rata kanan semua di Kolom 5 = Kolom E
-
-
     worksheet.columns = [
       { width: 12 }, { width: 8 }, { width: 12 }, { width: 25 }, { width: 15 }
     ];
@@ -124,26 +118,33 @@ function App() {
 
       {/* BOX TOTAL DI ATAS */}
       <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
-        <div style={{ border: '2px solid green', padding: '10px', borderRadius: '8px', width: '220px', }}>
+        <div style={{ border: '2px solid green', padding: '10px', borderRadius: '8px', width: '147px', }}>
           <p>Total Pemasukan</p>
           <h2 style={{ color: 'green', margin: 0 }}>Rp {totalPemasukan.toLocaleString('id-ID')}</h2>
         </div>
-        <div style={{ border: '2px solid red', padding: '10px', borderRadius: '8px', width: '220px' }}>
+        <div style={{ border: '2px solid red', padding: '10px', borderRadius: '8px', width: '147px' }}>
           <p>Total Pengeluaran</p>
           <h2 style={{ color: 'red', margin: 0 }}>Rp {totalPengeluaran.toLocaleString('id-ID')}</h2>
         </div>
-        <div style={{ border: '2px solid blue', padding: '10px', borderRadius: '8px', width: '220px' }}>
+        <div style={{ border: '2px solid blue', padding: '10px', borderRadius: '8px', width: '147px' }}>
           <p>Saldo Akhir</p>
           <h2 style={{ color: 'blue', margin: 0 }}>Rp {saldo.toLocaleString('id-ID')}</h2>
         </div>
       </div>
 
       {/* FORM INPUT */}
+
       <div style={{ marginBottom: '20px' }}>
-        <select value={jenis} onChange={(e) => setJenis(e.target.value)}>
+        <select value={jenis} onChange={(e) => setJenis(e.target.value,)}>
           <option>Pemasukan</option>
           <option>Pengeluaran</option>
         </select>
+        <button onClick={downloadExcel} style={{ backgroundColor: 'green', color: 'white', marginInlineStart: `345px`, }}>
+          Download Excel
+        </button>
+      </div>
+
+      <div>
         <input
           type="date"
           value={tanggalManual}
@@ -151,20 +152,16 @@ function App() {
         />
         <input placeholder="Keterangan" value={keterangan} onChange={(e) => setKeterangan(e.target.value)} style={{ margin: '0 5px' }} />
         <input placeholder="Jumlah" type="number" value={jumlah} onChange={(e) => setJumlah(e.target.value)} style={{ margin: '0 5px' }} />
-
         <button onClick={tambahData}>Tambah</button>
-        <button onClick={downloadExcel} style={{ backgroundColor: 'green', color: 'white', marginLeft: '10px' }}>
-          Download Excel
-        </button>
+
+
       </div>
-
-
 
       {/* TABEL DATA + TOMBOL HAPUS */}
       <table
         border="1"
         style={{
-          width: '60%',
+          width: '62%',
 
           textAlign: 'center',
 
@@ -173,41 +170,41 @@ function App() {
         }}
       >
         <thead>
-          
-  <tr>
-    <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Tanggal</th>
-    <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Jenis</th>
-    <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Keterangan</th>
-    <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Jumlah</th>
-    <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Aksi</th>
-  </tr>
-</thead>
-        
-<tbody>
-  {dataKeuangan.map((item, index) => (
-    <tr key={item.id}>
-      <td style={{ padding: '8px', border: '1px solid #ddd' }}>{item.tanggal}</td>
-      
-      <td style={{ 
-        padding: '8px', 
-        border: '1px solid #ddd',
-        color: item.jenis === 'Pemasukan' ? 'green' : 'red',
-        fontWeight: 'bold',
-        textAlign: 'center'
-      }}>
-        {item.jenis}
-      </td>
 
-      <td style={{ padding: '8px', border: '1px solid #ddd' }}>{item.keterangan}</td>
-      
-      <td style={{ padding: '8px', border: '1px solid #ddd', textAlign: 'right' }}>Rp {item.jumlah.toLocaleString()}</td>
-      
-      <td style={{ padding: '8px', border: '1px solid #ddd', textAlign: 'center' }}>
-        <button onClick={() => hapusData(item.id)} style={{ backgroundColor: 'red', color: 'white', border: 'none', padding: '4px 8px' }}>Hapus</button>
-      </td>
-    </tr>
-  ))}
-</tbody>
+          <tr>
+            <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '0px' }}>Tanggal</th>
+            <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Jenis</th>
+            <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Keterangan</th>
+            <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Jumlah</th>
+            <th style={{ padding: '8px', border: '1px solid #ddd', backgroundColor: '#2196F3', color: 'white', minWidth: '50px' }}>Aksi</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {dataKeuangan.map((item, index) => (
+            <tr key={item.id}>
+              <td style={{ padding: '8px', border: '1px solid #ddd' }}>{item.tanggal}</td>
+
+              <td style={{
+                padding: '8px',
+                border: '1px solid #ddd',
+                color: item.jenis === 'Pemasukan' ? 'green' : 'red',
+                fontWeight: 'bold',
+                textAlign: 'center'
+              }}>
+                {item.jenis}
+              </td>
+
+              <td style={{ padding: '8px', border: '1px solid #ddd' }}>{item.keterangan}</td>
+
+              <td style={{ padding: '8px', border: '1px solid #ddd', textAlign: 'right' }}>Rp {item.jumlah.toLocaleString()}</td>
+
+              <td style={{ padding: '8px', border: '1px solid #ddd', textAlign: 'center' }}>
+                <button onClick={() => hapusData(item.id)} style={{ backgroundColor: 'red', color: 'white', border: 'none', padding: '4px 8px' }}>Hapus</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
 
 
       </table>
