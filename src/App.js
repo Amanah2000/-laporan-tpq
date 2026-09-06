@@ -164,11 +164,7 @@ function App() {
           width: '50%',
 
           textAlign: 'center',
-
-          overflowX: 'auto',       // INI BARU
-          whiteSpace: 'nowrap',    // INI BARU
-        }}
-      >
+  >
         <thead>
 
           <tr>
