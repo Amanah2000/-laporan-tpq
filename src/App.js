@@ -114,16 +114,16 @@ function App() {
       <h1>Dashboard Keuangan TPQ</h1>
 
       {/* BOX TOTAL DI ATAS */}
-      <div style={{ display: 'flex', gap: '15px', marginBottom: '20px' }}>
-        <div style={{ border: '2px solid green', padding: '10px', borderRadius: '8px', width: '230px', }}>
+      <div style={{ display: 'flex', gap: '5px', marginBottom: '20px' }}>
+        <div style={{ border: '2px solid green', padding: '10px', borderRadius: '8px', width: '225px', }}>
           <p>Total Pemasukan</p>
           <h2 style={{ color: 'green', margin: 0 }}>Rp {totalPemasukan.toLocaleString('id-ID')}</h2>
         </div>
-        <div style={{ border: '2px solid red', padding: '10px', borderRadius: '8px', width: '230px' }}>
+        <div style={{ border: '2px solid red', padding: '10px', borderRadius: '8px', width: '225x' }}>
           <p>Total Pengeluaran</p>
           <h2 style={{ color: 'red', margin: 0 }}>Rp {totalPengeluaran.toLocaleString('id-ID')}</h2>
         </div>
-        <div style={{ border: '2px solid blue', padding: '10px', borderRadius: '8px', width: '230x' }}>
+        <div style={{ border: '2px solid blue', padding: '10px', borderRadius: '8px', width: '225px' }}>
           <p>Saldo Akhir</p>
           <h2 style={{ color: 'blue', margin: 0 }}>Rp {saldo.toLocaleString('id-ID')}</h2>
         </div>
