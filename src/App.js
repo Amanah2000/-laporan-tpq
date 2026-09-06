@@ -162,9 +162,9 @@ function App() {
         border="1"
         style={{
           width: '50%',
-
           textAlign: 'center',
-  >
+        }}
+          >
         <thead>
 
           <tr>
