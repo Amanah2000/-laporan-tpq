@@ -95,10 +95,7 @@ function App() {
       row.font = { bold: true };
       row.getCell(5).alignment = { horizontal: 'right' }; // Kolom E
     });
-    // Style Baris Total: Tebal
-    // 3. Tambah Total - DIPAKSA RATA KAN KOLOM E
-    // Style Baris Total: Tebal
-    // Rata kanan semua di Kolom 5 = Kolom E
+   
     worksheet.columns = [
       { width: 12 }, { width: 8 }, { width: 12 }, { width: 25 }, { width: 15 }
     ];
@@ -117,16 +114,16 @@ function App() {
       <h1>Dashboard Keuangan TPQ</h1>
 
       {/* BOX TOTAL DI ATAS */}
-      <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
-        <div style={{ border: '2px solid green', padding: '10px', borderRadius: '8px', width: '147px', }}>
+      <div style={{ display: 'flex', gap: '15px', marginBottom: '20px' }}>
+        <div style={{ border: '2px solid green', padding: '10px', borderRadius: '8px', width: '230px', }}>
           <p>Total Pemasukan</p>
           <h2 style={{ color: 'green', margin: 0 }}>Rp {totalPemasukan.toLocaleString('id-ID')}</h2>
         </div>
-        <div style={{ border: '2px solid red', padding: '10px', borderRadius: '8px', width: '147px' }}>
+        <div style={{ border: '2px solid red', padding: '10px', borderRadius: '8px', width: '230px' }}>
           <p>Total Pengeluaran</p>
           <h2 style={{ color: 'red', margin: 0 }}>Rp {totalPengeluaran.toLocaleString('id-ID')}</h2>
         </div>
-        <div style={{ border: '2px solid blue', padding: '10px', borderRadius: '8px', width: '147px' }}>
+        <div style={{ border: '2px solid blue', padding: '10px', borderRadius: '8px', width: '230x' }}>
           <p>Saldo Akhir</p>
           <h2 style={{ color: 'blue', margin: 0 }}>Rp {saldo.toLocaleString('id-ID')}</h2>
         </div>
@@ -134,37 +131,33 @@ function App() {
 
       {/* FORM INPUT */}
 
-      <div style={{ marginBottom: '20px' }}>
+      <div style={{ marginBottom: '20px'}}>
         <select value={jenis} onChange={(e) => setJenis(e.target.value,)}>
           <option>Pemasukan</option>
           <option>Pengeluaran</option>
         </select>
-        <button onClick={downloadExcel} style={{ backgroundColor: 'green', color: 'white', marginInlineStart: `345px`, }}>
+        <input
+         type="date"
+          value={tanggalManual}
+          onChange={(e) => setTanggalManual(e.target.value)}
+        />
+        <input placeholder="Keterangan" value={keterangan} onChange={(e) => setKeterangan(e.target.value)} style={{ margin: '5px' }} />
+        <input placeholder="Jumlah" type="number" value={jumlah} onChange={(e) => setJumlah(e.target.value)} style={{ margin: '5px' }} />
+        <button onClick={tambahData}>Tambah</button>
+        <button onClick={downloadExcel} style={{ backgroundColor: 'green', color: 'white', marginInlineStart: `5px`, }}>
           Download Excel
         </button>
       </div>
 
-      <div>
-        <input
-          type="date"
-          value={tanggalManual}
-          onChange={(e) => setTanggalManual(e.target.value)}
-        />
-        <input placeholder="Keterangan" value={keterangan} onChange={(e) => setKeterangan(e.target.value)} style={{ margin: '0 5px' }} />
-        <input placeholder="Jumlah" type="number" value={jumlah} onChange={(e) => setJumlah(e.target.value)} style={{ margin: '0 5px' }} />
-        <button onClick={tambahData}>Tambah</button>
-
-
-      </div>
 
       {/* TABEL DATA + TOMBOL HAPUS */}
       <table
         border="1"
         style={{
-          width: '42%',
+          width: '100%',
           textAlign: 'center',
         }}
-          >
+      >
         <thead>
 
           <tr>
@@ -192,9 +185,7 @@ function App() {
               </td>
 
               <td style={{ padding: '8px', border: '1px solid #ddd' }}>{item.keterangan}</td>
-
-              <td style={{ padding: '8px', border: '1px solid #ddd', textAlign: 'right' }}>Rp {item.jumlah.toLocaleString()}</td>
-
+              <td style={{ padding: '8px', border: '1px solid #ddd', textAlign: 'center' }}>Rp {item.jumlah.toLocaleString()}</td>
               <td style={{ padding: '8px', border: '1px solid #ddd', textAlign: 'center' }}>
                 <button onClick={() => hapusData(item.id)} style={{ backgroundColor: 'red', color: 'white', border: 'none', padding: '4px 8px' }}>Hapus</button>
               </td>
